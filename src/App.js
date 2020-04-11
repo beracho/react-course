@@ -1,39 +1,56 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Person from './Person/Person';
 import './App.css';
-const App = props => {
-  const [personsState, setPersonsState] = useState({
-      persons: [
-        { name: 'Max', age: RandomAge() },
-        { name: 'Jorge', age: RandomAge() },
-        { name: 'Jie', age: RandomAge() },
-      ]
-  });
-
-  const [anotherState, setAnotherState] = useState('some other values');
-  console.log(personsState);
-  console.log(anotherState);
+class App extends Component {
+  state = {
+    persons: [
+      { name: 'Max', age: RandomAge() },
+      { name: 'Jorge', age: RandomAge() },
+      { name: 'Jie', age: RandomAge() },
+    ]
+  };
   
-  const SwitchNameHandler = () => {
-    setPersonsState({
+  SwitchNameHandler = (newName) => {
+    this.setState({
       persons: [
-        { name: 'Maximilian', age: RandomAge() },
+        { name: newName, age: RandomAge() },
         { name: 'Jorge', age: RandomAge() },
         { name: 'Jie', age: RandomAge() },
       ]
     });
   }
 
-  return (
-    <div className="App">
-      <h1>Hi, I'm a React App</h1>
-      <p>Can we do this?</p>
-      <button onClick={SwitchNameHandler}>Switch Name</button>
-      <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
-      <Person name={personsState.persons[1].name} age={personsState.persons[1].age} />
-      <Person name={personsState.persons[2].name} age={personsState.persons[2].age} />
-    </div>
-  );
+  NameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: event.target.value, age: RandomAge() },
+        { name: 'Jorge', age: RandomAge() },
+        { name: 'Jie', age: RandomAge() },
+      ]
+    });
+  }
+
+  render () {
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>Can we do this?</p>
+        <button onClick={this.SwitchNameHandler.bind(this, 'Maximilian')}>Switch Name</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          changed={this.NameChangedHandler} />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={() => this.SwitchNameHandler('Maximo')} 
+        >My hobbies: Racing </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age} />
+      </div>
+    );
+  }
 }
 
 const RandomAge = () => {
