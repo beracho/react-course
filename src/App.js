@@ -6,18 +6,56 @@ import './App.css';
 class App extends Component {
   state = {
     persons: [
-      { username: 'Jie', age: RandomAge(), description: 'I enjoy Videogames and Sports' },
-      { username: 'Vanesa', age: RandomAge(), description: 'I enjoy Videogames and Sports' },
-      { username: 'Pamela', age: RandomAge(), description: 'I enjoy Videogames and Sports' },
-      { username: 'Nicole', age: RandomAge(), description: 'I enjoy Videogames and Sports' },
-      { username: 'Nataly', age: RandomAge(), description: 'I enjoy Videogames and Sports' }
+      { 
+        username: 'Jie',
+        age: RandomAge(),
+        description: 'I enjoy Videogames and Sports',
+        hidden: true
+      }, {
+        username: 'Vanesa',
+        age: RandomAge(),
+        description: 'I enjoy Videogames and Sports',
+        hidden: true
+      }, {
+        username: 'Pamela',
+        age: RandomAge(),
+        description: 'I enjoy Videogames and Sports',
+        hidden: true
+      }, {
+        username: 'Nicole',
+        age: RandomAge(),
+        description: 'I enjoy Videogames and Sports',
+        hidden: true
+      }, {
+        username: 'Nataly',
+        age: RandomAge(),
+        description: 'I enjoy Videogames and Sports',
+        hidden: true
+      }
     ]
   };
   
   NameChangedHandler = position => event => {
-    this.state.persons[position].username = event.target.value;
+    let auxPersons = [...this.state.persons]
+    auxPersons[position].username = event.target.value;
     this.setState({
-      persons: this.state.persons
+      persons:auxPersons
+    });
+  }
+
+  toggleContentHandler = (position) => {
+    let auxPersons = [...this.state.persons]
+    auxPersons[position].hidden = !this.state.persons[position].hidden;
+    this.setState({
+      persons: auxPersons
+    });
+  }
+
+  deleteItem = (personIndex) => {
+    const auxPersons = [...this.state.persons];
+    auxPersons.splice(personIndex, 1);
+    this.setState({
+      persons: auxPersons
     });
   }
 
@@ -33,61 +71,28 @@ class App extends Component {
       borderRadius: '10px',
       boxShadow: '5px 5px 5px #555'
     };
-
-    return (
+    
+    let items = (
       <div className="App">
-        <div style={style}>
-          <UserInput
-            name={this.state.persons[0].username}
-            changed={this.NameChangedHandler}
-            position='0'/>
-          <UserOutput
-            name={this.state.persons[0].username}
-            age={this.state.persons[0].age}
-            description={this.state.persons[0].description}/>
+        {this.state.persons.map((person, index) => {
+          return <div style={style} key={index}>
+            <UserInput
+              name={person.username}
+              changed={this.NameChangedHandler}
+              hideShow={this.toggleContentHandler.bind(this, index)}
+              deleteItem={this.deleteItem.bind(this, index)}
+              position={index}/>
+            <UserOutput
+              name={person.username}
+              age={person.age}
+              description={person.description}
+              hide={person.hidden}/>
+          </div>
+        })}
         </div>
-        <div style={style}>
-          <UserInput
-            name={this.state.persons[1].username}
-            changed={this.NameChangedHandler}
-            position='1'/>
-          <UserOutput
-            name={this.state.persons[1].username}
-            age={this.state.persons[1].age}
-            description={this.state.persons[1].description}/>
-        </div>
-        <div style={style}>
-          <UserInput
-            name={this.state.persons[2].username}
-            changed={this.NameChangedHandler}
-            position='2'/>
-          <UserOutput
-            name={this.state.persons[2].username}
-            age={this.state.persons[2].age}
-            description={this.state.persons[2].description}/>
-        </div>
-        <div style={style}>
-          <UserInput
-            name={this.state.persons[3].username}
-            changed={this.NameChangedHandler}
-            position='3'/>
-          <UserOutput
-            name={this.state.persons[3].username}
-            age={this.state.persons[3].age}
-            description={this.state.persons[3].description}/>
-        </div>
-        <div style={style}>
-          <UserInput
-            name={this.state.persons[4].username}
-            changed={this.NameChangedHandler}
-            position='4'/>
-          <UserOutput
-            name={this.state.persons[4].username}
-            age={this.state.persons[4].age}
-            description={this.state.persons[4].description}/>
-        </div>
-      </div>
     );
+
+    return items;
   }
 }
 
