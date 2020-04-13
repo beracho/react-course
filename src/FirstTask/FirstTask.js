@@ -71,8 +71,13 @@ class FirstTask extends Component {
       boxShadow: '5px 5px 5px #555'
     };
 
+    // let classes = ['red', 'bold'].join(' ');
+    let classes = [];
+
     let items = (
       <div className="FirstTask">
+        <h1>First Task</h1>
+        <p className={classes}>It works like a charm</p>
         {this.state.persons.map((person, index) => {
           return <div style={style} key={index}>
             <UserInput
