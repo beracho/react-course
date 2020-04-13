@@ -25,6 +25,8 @@ class App extends Component {
       characters = (
         <div>
         {this.state.inputText.split('').map((singleChar, index) => {
+          if(singleChar == ' ')
+            singleChar = '.';
           return <CharComponent 
             item={singleChar} 
             key={index} 
