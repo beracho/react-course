@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Person from './Person/Person'
 import Classes from './Ongoing.module.css'
+import ErrorBoundary from './../ErrorBoundary/ErrorBoundary'
 
 class Ongoing extends Component {
   state = {
@@ -34,12 +35,13 @@ class Ongoing extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-              key={index}
-              index={index}
-              name={person.name}
-              age={person.age}
-              nameChanged={this.nameChangeHandler} />
+            return <ErrorBoundary key={index}>
+              <Person
+                index={index}
+                name={person.name}
+                age={person.age}
+                nameChanged={this.nameChangeHandler} />
+              </ErrorBoundary>
           })}
         </div>
       )
