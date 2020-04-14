@@ -1,21 +1,6 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import Person from './Person/Person'
-import './Ongoing.css'
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`
+import Classes from './Ongoing.module.css'
 
 class Ongoing extends Component {
   state = {
@@ -44,6 +29,7 @@ class Ongoing extends Component {
   }
   render() {
     let persons = null;
+    let btnClass = '';
     if (!this.state.hidden) {
       persons = (
         <div>
@@ -57,15 +43,17 @@ class Ongoing extends Component {
           })}
         </div>
       )
+
+      btnClass = Classes.Red;
     }
 
     return (
-      <div className='Ongoing'>
+      <div className={Classes.Ongoing}>
         <h1>My React App</h1>
         <p>Running safe and sound</p>
-        <StyledButton alt={!this.state.hidden} onClick={this.togglePersonsHandler}>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
           Toggle Persons
-        </StyledButton>
+        </button>
         {persons}
       </div>
     )

@@ -1,0 +1,28 @@
+.Ongoing {
+  text-align: center;
+  background-color: white;
+  height: auto;
+  padding: 18px;
+}
+
+.Ongoing button {
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.Ongoing button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+.Ongoing button.Red {
+  background-color: red;
+}
+
+.Ongoing button.Red:hover {
+  background-color: salmon;
+}
