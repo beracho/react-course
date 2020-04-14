@@ -1,5 +1,4 @@
 import React from 'react'
-import Radium from 'radium'
 import './UserInput.css'
 
 function UserInput(props) {
@@ -14,10 +13,10 @@ function UserInput(props) {
     border: '1px solid white',
     padding: '8px',
     cursor: 'pointer',
-    ':hover': {
-      backgroundColor: 'lightgreen',
-      color: 'black'
-    }
+    // ':hover': {
+    //   backgroundColor: 'lightgreen',
+    //   color: 'black'
+    // }
   };
   const butonStyle = {
     backgroundColor: 'blue',
@@ -27,10 +26,10 @@ function UserInput(props) {
     border: '1px solid white',
     padding: '8px',
     cursor: 'pointer',
-    ':hover': {
-      backgroundColor: 'lightblue',
-      color: 'black'
-    }
+    // ':hover': {
+    //   backgroundColor: 'lightblue',
+    //   color: 'black'
+    // }
   };
   let text = 'Show';
   if (props.hidden) {
@@ -50,4 +49,4 @@ function UserInput(props) {
   )
 }
 
-export default Radium(UserInput)
+export default UserInput

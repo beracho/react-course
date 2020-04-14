@@ -4,36 +4,41 @@ import UserOutput from './UserOutput/UserOutput';
 import './FirstTask.css';
 
 class FirstTask extends Component {
+  RandomAge = () => {
+    return Math.floor(Math.random() * 30) + 15;
+  }
+  
   state = {
     persons: [
       {
         username: 'Jie',
-        age: RandomAge(),
+        age: this.RandomAge(),
         description: 'I enjoy Videogames and Sports',
         hidden: true
       }, {
         username: 'Vanesa',
-        age: RandomAge(),
+        age: this.RandomAge(),
         description: 'I enjoy Videogames and Sports',
         hidden: true
       }, {
         username: 'Pamela',
-        age: RandomAge(),
+        age: this.RandomAge(),
         description: 'I enjoy Videogames and Sports',
         hidden: true
       }, {
         username: 'Nicole',
-        age: RandomAge(),
+        age: this.RandomAge(),
         description: 'I enjoy Videogames and Sports',
         hidden: true
       }, {
         username: 'Nataly',
-        age: RandomAge(),
+        age: this.RandomAge(),
         description: 'I enjoy Videogames and Sports',
         hidden: true
       }
     ]
   };
+
   NameChangedHandler = position => event => {
     let auxPersons = [...this.state.persons]
     auxPersons[position].username = event.target.value;
@@ -99,10 +104,6 @@ class FirstTask extends Component {
 
     return items;
   }
-}
-
-const RandomAge = () => {
-  return Math.floor(Math.random() * 30) + 15;
 }
 
 export default FirstTask;
