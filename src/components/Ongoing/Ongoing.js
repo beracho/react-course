@@ -41,8 +41,9 @@ class Ongoing extends Component {
     return (
       <div className={Classes.Ongoing}>
         <Cockpit
+          tittle={this.props.appTittle}
           showPersons={this.state.showPersons}
-          persons={this.state.persons}
+          // persons={this.state.persons}
           clicked={this.togglePersonsHandler} />
         {persons}
       </div>
