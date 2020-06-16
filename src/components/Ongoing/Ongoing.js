@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Person from './Person/Person'
+import Cockpit from '../Cockpit/Cockpit'
+import Persons from './Persons/Persons'
 import Classes from './Ongoing.module.css'
-import ErrorBoundary from './../ErrorBoundary/ErrorBoundary'
 
 class Ongoing extends Component {
   state = {
@@ -30,32 +30,20 @@ class Ongoing extends Component {
   }
   render() {
     let persons = null;
-    let btnClass = '';
     if (!this.state.hidden) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={index}>
-              <Person
-                index={index}
-                name={person.name}
-                age={person.age}
-                nameChanged={this.nameChangeHandler} />
-              </ErrorBoundary>
-          })}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          changed={this.nameChangeHandler} />
       )
-
-      btnClass = Classes.Red;
     }
 
     return (
       <div className={Classes.Ongoing}>
-        <h1>My React App</h1>
-        <p>Running safe and sound</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler} />
         {persons}
       </div>
     )
