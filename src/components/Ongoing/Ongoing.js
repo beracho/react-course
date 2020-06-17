@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Cockpit from '../Cockpit/Cockpit'
 import Persons from './Persons/Persons'
 import Classes from './Ongoing.module.css'
+import AuthContext from '../../context/auth-context'
 
 class Ongoing extends Component {
   state = {
@@ -53,14 +54,18 @@ class Ongoing extends Component {
 
     return (
       <div className={Classes.Ongoing}>
-        <Cockpit
-          tittle={this.props.appTittle}
-          showPersons={this.state.showPersons}
-          // persons={this.state.persons}
-          clicked={this.togglePersonsHandler}
-          login={this.loginHandler}
-        />
-        {persons}
+        <AuthContext.Provider value={{
+          authenticated: this.state.authenticated,
+          login: this.loginHandler
+        }}>
+          <Cockpit
+            tittle={this.props.appTittle}
+            showPersons={this.state.showPersons}
+            // persons={this.state.persons}
+            clicked={this.togglePersonsHandler}
+          />
+          {persons}
+        </AuthContext.Provider>
       </div>
     )
   }
