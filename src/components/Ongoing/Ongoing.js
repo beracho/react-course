@@ -12,7 +12,8 @@ class Ongoing extends Component {
       { name: 'Omar', age: 28 },
     ],
     hidden: false,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   nameChangeHandler = personIndex => event => {
@@ -32,13 +33,21 @@ class Ongoing extends Component {
       hidden: isHidden
     })
   }
+
+  loginHandler = () => {
+    console.log("logging in");
+    this.setState({ authenticated: true });
+  }
+
   render() {
     let persons = null;
     if (!this.state.hidden) {
       persons = (
         <Persons
           persons={this.state.persons}
-          changed={this.nameChangeHandler} />
+          changed={this.nameChangeHandler}
+          isAuthenticated={this.state.authenticated}
+        />
       )
     }
 
@@ -48,7 +57,9 @@ class Ongoing extends Component {
           tittle={this.props.appTittle}
           showPersons={this.state.showPersons}
           // persons={this.state.persons}
-          clicked={this.togglePersonsHandler} />
+          clicked={this.togglePersonsHandler}
+          login={this.loginHandler}
+        />
         {persons}
       </div>
     )

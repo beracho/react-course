@@ -50,11 +50,13 @@ class Persons extends Component {
     return this.props.persons.map((person, index) =>
       <Person
         click={() => this.props.clicked(index)}
+        isAuth={this.props.isAuthenticated}
         name={person.name}
         age={person.age}
         index={index}
         key={index}
-        changed={(event) => this.props.changed(event, index)} />
+        changed={(event) => this.props.changed(event, index)}
+      />
     );
   }
 }
