@@ -11,14 +11,18 @@ class Ongoing extends Component {
       { name: 'Ramiro', age: 31 },
       { name: 'Omar', age: 28 },
     ],
-    hidden: false
+    hidden: false,
+    changeCounter: 0
   }
 
   nameChangeHandler = personIndex => event => {
     const newPersons = [...this.state.persons];
     newPersons[personIndex].name = event.target.value;
-    this.setState({
-      persons: newPersons
+    this.setState((prevState, props) => {
+      return {
+        persons: newPersons,
+        changeCounter: prevState.changeCounter + 1
+      }
     })
   }
 
