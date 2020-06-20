@@ -3,6 +3,7 @@ import Cockpit from '../Cockpit/Cockpit'
 import Persons from './Persons/Persons'
 import Classes from './Ongoing.module.css'
 import AuthContext from '../../context/auth-context'
+import WithClass from '../../hoc/WithClass'
 
 class Ongoing extends Component {
   state = {
@@ -64,7 +65,9 @@ class Ongoing extends Component {
             // persons={this.state.persons}
             clicked={this.togglePersonsHandler}
           />
-          {persons}
+          <WithClass classes={Classes.PersonsWrapper}>
+            {persons}
+          </WithClass>
         </AuthContext.Provider>
       </div>
     )

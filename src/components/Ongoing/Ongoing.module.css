@@ -8,6 +8,7 @@
 .Ongoing button {
   background-color: green;
   color: white;
+  margin: 5px;
   font: inherit;
   border: 1px solid blue;
   padding: 8px;
@@ -25,4 +26,9 @@
 
 .Ongoing button.Red:hover {
   background-color: salmon;
+}
+
+.PersonsWrapper {
+  text-align: center;
+  width: 100%;
 }
